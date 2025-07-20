@@ -193,19 +193,25 @@ const Contacts: React.FC = () => {
             onChange={handleBulkImport}
             className="hidden"
             id="bulk-import"
-            htmlFor="bulk-import"
           />
-          <button className="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+          <label
+            htmlFor="bulk-import"
+            className="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors cursor-pointer"
+          >
             <Upload className="h-5 w-5 mr-2" />
             Import CSV
-            onClick={handleExport}
           </label>
-          <button className="flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+          <button 
+            onClick={handleExport}
+            className="flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+          >
             <Download className="h-5 w-5 mr-2" />
             Export CSV
           </button>
-          <button className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          <button 
             onClick={() => setShowModal(true)}
+            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
             <Plus className="h-5 w-5 mr-2" />
             New Contact
           </button>
