@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, Edit, Trash2, Play, Pause, Users, MessageSquare, Phone, Calendar, BarChart3 } from 'lucide-react';
 import axios from 'axios';
-import toast from 'react-hot-toast';
+// import toast from 'react-hot-toast';
 
 interface Campaign {
   _id: string;
@@ -54,7 +54,7 @@ const Campaigns: React.FC = () => {
       setLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
-      toast.error('Failed to fetch data');
+      // toast.error('Failed to fetch data');
       setLoading(false);
     }
   };
@@ -75,10 +75,10 @@ const Campaigns: React.FC = () => {
 
       if (editingCampaign) {
         await axios.put(`/api/campaigns/${editingCampaign._id}`, campaignData);
-        toast.success('Campaign updated successfully');
+        // toast.success('Campaign updated successfully');
       } else {
         await axios.post('/api/campaigns', campaignData);
-        toast.success('Campaign created successfully');
+        // toast.success('Campaign created successfully');
       }
       
       setShowModal(false);
@@ -87,7 +87,7 @@ const Campaigns: React.FC = () => {
       fetchData();
     } catch (error) {
       console.error('Error saving campaign:', error);
-      toast.error('Failed to save campaign');
+      // toast.error('Failed to save campaign');
     }
   };
 
@@ -108,11 +108,11 @@ const Campaigns: React.FC = () => {
     if (window.confirm('Are you sure you want to delete this campaign?')) {
       try {
         await axios.delete(`/api/campaigns/${campaignId}`);
-        toast.success('Campaign deleted successfully');
+        // toast.success('Campaign deleted successfully');
         fetchData();
       } catch (error) {
         console.error('Error deleting campaign:', error);
-        toast.error('Failed to delete campaign');
+        // toast.error('Failed to delete campaign');
       }
     }
   };
@@ -120,22 +120,22 @@ const Campaigns: React.FC = () => {
   const handleStartCampaign = async (campaignId: string) => {
     try {
       await axios.post(`/api/campaigns/${campaignId}/start`);
-      toast.success('Campaign started successfully');
+      // toast.success('Campaign started successfully');
       fetchData();
     } catch (error) {
       console.error('Error starting campaign:', error);
-      toast.error('Failed to start campaign');
+      // toast.error('Failed to start campaign');
     }
   };
 
   const handlePauseCampaign = async (campaignId: string) => {
     try {
       await axios.post(`/api/campaigns/${campaignId}/pause`);
-      toast.success('Campaign paused successfully');
+      // toast.success('Campaign paused successfully');
       fetchData();
     } catch (error) {
       console.error('Error pausing campaign:', error);
-      toast.error('Failed to pause campaign');
+      // toast.error('Failed to pause campaign');
     }
   };
 

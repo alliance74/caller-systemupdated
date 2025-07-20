@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Plus, Edit, Trash2, FileText, Phone, MessageSquare, Copy } from 'lucide-react';
+import { Plus, Edit, Trash2, FileText, Phone, MessageSquare, Copy, Play, Users } from 'lucide-react';
+// import toast from 'react-hot-toast';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 
 interface Script {
   _id: string;
@@ -39,7 +39,7 @@ const Scripts: React.FC = () => {
       setLoading(false);
     } catch (error) {
       console.error('Error fetching scripts:', error);
-      toast.error('Failed to fetch scripts');
+      // toast.error('Failed to fetch scripts');
       setLoading(false);
     }
   };
@@ -49,10 +49,10 @@ const Scripts: React.FC = () => {
     try {
       if (editingScript) {
         await axios.put(`/api/scripts/${editingScript._id}`, formData);
-        toast.success('Script updated successfully');
+        // toast.success('Script updated successfully');
       } else {
         await axios.post('/api/scripts', formData);
-        toast.success('Script created successfully');
+        // toast.success('Script created successfully');
       }
       setShowModal(false);
       setEditingScript(null);
@@ -60,7 +60,7 @@ const Scripts: React.FC = () => {
       fetchScripts();
     } catch (error) {
       console.error('Error saving script:', error);
-      toast.error('Failed to save script');
+      // toast.error('Failed to save script');
     }
   };
 
@@ -80,11 +80,11 @@ const Scripts: React.FC = () => {
     if (window.confirm('Are you sure you want to delete this script?')) {
       try {
         await axios.delete(`/api/scripts/${scriptId}`);
-        toast.success('Script deleted successfully');
+        // toast.success('Script deleted successfully');
         fetchScripts();
       } catch (error) {
         console.error('Error deleting script:', error);
-        toast.error('Failed to delete script');
+        // toast.error('Failed to delete script');
       }
     }
   };

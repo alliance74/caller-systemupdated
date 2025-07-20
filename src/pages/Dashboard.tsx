@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, MessageSquare, Users, FileText, Play, Send, TrendingUp } from 'lucide-react';
+import { Phone, MessageSquare, Users, FileText, Play, Send, TrendingUp, Calendar, Clock, CheckCircle, XCircle } from 'lucide-react';
 import axios from 'axios';
-import toast from 'react-hot-toast';
+// import toast from 'react-hot-toast';
 
 interface StatCardProps {
   title: string;
@@ -52,7 +52,7 @@ const Dashboard: React.FC = () => {
       setLoading(false);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
-      toast.error('Failed to fetch dashboard data');
+      // toast.error('Failed to fetch dashboard data');
       setLoading(false);
     }
   };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, Edit, Trash2, Users, Upload, Download, Search, Filter, Mail, Phone } from 'lucide-react';
 import axios from 'axios';
-import toast from 'react-hot-toast';
+// import toast from 'react-hot-toast';
 
 interface Contact {
   _id: string;
@@ -43,7 +43,7 @@ const Contacts: React.FC = () => {
       setLoading(false);
     } catch (error) {
       console.error('Error fetching contacts:', error);
-      toast.error('Failed to fetch contacts');
+      // toast.error('Failed to fetch contacts');
       setLoading(false);
     }
   };
@@ -53,10 +53,10 @@ const Contacts: React.FC = () => {
     try {
       if (editingContact) {
         await axios.put(`/api/contacts/${editingContact._id}`, formData);
-        toast.success('Contact updated successfully');
+        // toast.success('Contact updated successfully');
       } else {
         await axios.post('/api/contacts', formData);
-        toast.success('Contact created successfully');
+        // toast.success('Contact created successfully');
       }
       
       setShowModal(false);
@@ -65,7 +65,7 @@ const Contacts: React.FC = () => {
       fetchContacts();
     } catch (error) {
       console.error('Error saving contact:', error);
-      toast.error('Failed to save contact');
+      // toast.error('Failed to save contact');
     }
   };
 
@@ -86,11 +86,11 @@ const Contacts: React.FC = () => {
     if (window.confirm('Are you sure you want to delete this contact?')) {
       try {
         await axios.delete(`/api/contacts/${contactId}`);
-        toast.success('Contact deleted successfully');
+        // toast.success('Contact deleted successfully');
         fetchContacts();
       } catch (error) {
         console.error('Error deleting contact:', error);
-        toast.error('Failed to delete contact');
+        // toast.error('Failed to delete contact');
       }
     }
   };
@@ -114,11 +114,11 @@ const Contacts: React.FC = () => {
       });
 
       await axios.post('/api/contacts/bulk-import', { contacts: contactsToImport });
-      toast.success(`${contactsToImport.length} contacts imported successfully`);
+      // toast.success(`${contactsToImport.length} contacts imported successfully`);
       fetchContacts();
     } catch (error) {
       console.error('Error importing contacts:', error);
-      toast.error('Failed to import contacts');
+      // toast.error('Failed to import contacts');
     }
   };
 
