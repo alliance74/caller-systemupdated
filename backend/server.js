@@ -23,12 +23,19 @@ app.set('getPublicUrl', getPublicUrl);
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/ai-caller-system', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
 });
 
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on('error', (error) => {
+  console.error('MongoDB connection error:', error);
+});
 db.once('open', () => {
-  console.log('Connected to MongoDB');
+  console.log('Connected to MongoDB successfully');
+});
+db.on('disconnected', () => {
+  console.log('MongoDB disconnected');
 });
 
 // Routes
@@ -39,7 +46,22 @@ app.use('/api/twilio', require('./routes/twilio'));
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Server is running' });
+  // Check if MongoDB is connected
+  if (mongoose.connection.readyState === 1) {
+    res.json({ 
+      status: 'OK', 
+      message: 'Server is running',
+      database: 'connected',
+      timestamp: new Date().toISOString()
+    });
+  } else {
+    res.status(503).json({ 
+      status: 'ERROR', 
+      message: 'Database not connected',
+      database: 'disconnected',
+      timestamp: new Date().toISOString()
+    });
+  }
 });
 
 // Serve static files from the React app in production
