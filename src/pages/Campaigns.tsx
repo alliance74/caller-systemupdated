@@ -422,6 +422,23 @@ const Campaigns: React.FC = () => {
                   />
                 </div>
                 
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Contacts</label>
+                  <select
+                    multiple
+                    value={formData.contacts}
+                    onChange={e => setFormData({ ...formData, contacts: Array.from(e.target.selectedOptions, option => option.value) })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  >
+                    {contacts.map((contact: any) => (
+                      <option key={contact._id} value={contact._id}>
+                        {contact.firstName} {contact.lastName} ({contact.phone})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                
                 <div className="flex justify-end space-x-3 pt-4">
                   <button
                     type="button"
