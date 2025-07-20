@@ -423,8 +423,10 @@ const Contacts: React.FC = () => {
             {searchTerm || selectedTag ? 'Try adjusting your search or filter' : 'Get started by adding your first contact'}
           </p>
           {!searchTerm && !selectedTag && (
-            <button className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            <button 
+              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               onClick={() => setShowModal(true)}
+            >
               <Plus className="h-5 w-5 mr-2" />
               Add Contact
             </button>
